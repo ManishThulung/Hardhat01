@@ -8,14 +8,19 @@ require("solidity-coverage");
 const GOERLY_RPC_URL = process.env.GOERLY_RPC_URL;
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const COINMARKET_API_KRY = process.env.COINMARKET_API_KRY;
+const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY;
 
 module.exports = {
-  solidity: "0.8.18",
+  // solidity: "0.8.18",
+  solidity: {
+    compilers: [{ version: "0.8.8" }, { version: "0.6.6" }],
+  },
   networks: {
     goerli: {
       url: GOERLY_RPC_URL,
       accounts: [PRIVATE_KEY],
       chainId: 5,
+      blockConfirmations: 6,
     },
     localhost: {
       url: "http://127.0.0.1:8545/",
@@ -29,6 +34,9 @@ module.exports = {
     currency: "USD",
     coinmarketcap: COINMARKET_API_KRY,
     token: "MATIC",
+  },
+  etherscan: {
+    apiKey: ETHERSCAN_API_KEY,
   },
   namedAccounts: {
     deployer: {
